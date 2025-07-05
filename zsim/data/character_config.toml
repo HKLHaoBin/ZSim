@@ -1,4 +1,4 @@
-name_box = [ "仪玄", "橘福福", "潘引壶",]
+name_box = [ "青衣", "丽娜", "雅",]
 
 ["露西"]
 name = "露西"
@@ -374,7 +374,7 @@ scCRIT = 10
 scCRIT_DMG = 10
 drive4 = "暴击率%"
 drive5 = "电属性伤害%"
-drive6 = "冲击力%"
+drive6 = "攻击力%"
 equip_style = "4+2"
 equip_set4 = "震星迪斯科"
 equip_set2_a = "啄木鸟电音"
