@@ -156,12 +156,18 @@ def show_apl_judge_result(selected_title: str | None = None) -> bool:
     char_config_result: tuple[bool, dict[str, str | int]] = (
         apl_judge_tool.judge_char_config()
     )
+    # 新增：获取所有必选和可选角色名
+    all_required = apl_judge_tool.required_chars
+    all_optional = apl_judge_tool.optional_chars
+    # 获取已满足的必选和可选角色名
+    satisfied_required = [c for c in all_required if c not in required_chars_result[1]]
+    satisfied_optional = [c for c in all_optional if c not in option_result_result[1]]
     if required_chars_result[0]:
-        st.success("必选角色满足要求")
+        st.success(f"必选角色满足要求：{satisfied_required}")
     else:
         st.error(f"必选角色缺少：{required_chars_result[1]}")
     if option_result_result[0]:
-        st.success("可选角色满足要求")
+        st.success(f"可选角色满足要求：{satisfied_optional}")
     else:
         st.error(f"可选角色缺少：{option_result_result[1]}")
     if char_config_result[0]:
