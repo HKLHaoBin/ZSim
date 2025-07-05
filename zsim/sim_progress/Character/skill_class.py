@@ -373,8 +373,8 @@ class Skill:
             # 技能链相关
             value = _raw_skill_data.get("swap_cancel_ticks")
             if value is None:
-                raise ValueError(f"技能数据缺失：swap_cancel_ticks 为 None（技能名：{self.char_name}，技能tag：{self.skill_tag}）")
                 value = 0
+                raise ValueError(f"技能数据缺失：swap_cancel_ticks 为 None（技能名：{self.char_name}，技能tag：{self.skill_tag}）")
             self.swap_cancel_ticks: int = int(value)  # 可执行合轴操作的最短时间
             follow_up = _raw_skill_data["follow_up"]
             if follow_up is None:
