@@ -461,9 +461,12 @@ class Skill:
                 if not attr.startswith("__") and not callable(getattr(self, attr))
             }
             self.heavy_attack: bool = bool(_raw_skill_data["heavy_attack"])
-            self.max_repeat_times: int = int(
-                _raw_skill_data["max_repeat_times"]
-            )  # 最大重复释放次数。
+            value = _raw_skill_data.get("max_repeat_times")
+            if value is None:
+                print(f"技能数据缺失：max_repeat_times 为 None（技能名：{self.char_name}，技能tag：{self.skill_tag}），已自动设为0")
+                self.max_repeat_times: int = 0  # 最大重复释放次数。
+            else:
+                self.max_repeat_times: int = int(value)  # 最大重复释放次数。
             """
             技能是否立刻执行，大部分技能都是False，目前只有QTE和大招具有这种属性。
             该属性会在APL部分的SwapCancelEngine中被用到，用于检测角色已有的动作是否会被新动作打断。
