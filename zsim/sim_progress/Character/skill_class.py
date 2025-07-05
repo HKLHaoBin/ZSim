@@ -398,10 +398,11 @@ class Skill:
             aid_lag_ticks_value = _raw_skill_data["aid_lag_ticks"]
             if aid_lag_ticks_value == "inf":
                 self.aid_lag_ticks = self.ticks - 1
+            elif aid_lag_ticks_value is None:
+                print(f"技能数据缺失：aid_lag_ticks 为 None（技能名：{self.char_name}，技能tag：{self.skill_tag}），已自动设为0")
+                self.aid_lag_ticks = 0
             else:
-                self.aid_lag_ticks: int = int(
-                    _raw_skill_data["aid_lag_ticks"]
-                )  # 技能激活快速支援的滞后时间
+                self.aid_lag_ticks: int = int(aid_lag_ticks_value)  # 技能激活快速支援的滞后时间
             tick_value = _raw_skill_data["tick_list"]
             if tick_value is None:
                 self.tick_list = None
